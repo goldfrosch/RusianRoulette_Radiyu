@@ -1,18 +1,18 @@
 package com.goldfrosch;
 
 import com.goldfrosch.commands.Commands;
-import com.goldfrosch.events.NewEvent;
+import com.goldfrosch.events.PlayerEvent;
 import lombok.Getter;
 import lombok.Setter;
 
 import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @Getter
 @Setter
-public class MainPlugin extends JavaPlugin implements Listener {
+public class MainPlugin extends JavaPlugin {
+    public static MainPlugin plugin;
     private PluginDescriptionFile pdfFile = this.getDescription();
     private String pfName = pdfFile.getName() + " v" + pdfFile.getVersion();
 
@@ -47,6 +47,6 @@ public class MainPlugin extends JavaPlugin implements Listener {
     }
 
     public void registerEvent() {
-        Bukkit.getPluginManager().registerEvents(new NewEvent(this),this);
+        Bukkit.getPluginManager().registerEvents(new PlayerEvent(),this);
     }
 }

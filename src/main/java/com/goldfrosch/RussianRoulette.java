@@ -12,41 +12,41 @@ import org.bukkit.plugin.java.JavaPlugin;
 @Getter
 @Setter
 public class RussianRoulette extends JavaPlugin {
-    public static RussianRoulette plugin;
-    private PluginDescriptionFile pdfFile = this.getDescription();
-    private String pfName = pdfFile.getName() + " v" + pdfFile.getVersion();
+  public static RussianRoulette plugin;
+  private PluginDescriptionFile pdfFile = this.getDescription();
+  private String pfName = pdfFile.getName() + " v" + pdfFile.getVersion();
 
-    @Override
-    public void onEnable(){
-        //config 파일 있는지 파악 후 생성
-        if (!getDataFolder().exists()) {
-            getConfig().options().copyDefaults(true);
-        }
-        saveConfig();
-
-        //Event Register
-        registerEvent();
-
-        //command
-        Commands cmd = new Commands(this,"cmd");
-        getCommand("cmd").setExecutor(cmd);
-        getCommand("cmd").setTabCompleter(cmd);
-
-        consoleLog(pfName+"이 활성화 되었습니다");
-        super.onEnable();
+  @Override
+  public void onEnable(){
+    //config 파일 있는지 파악 후 생성
+    if (!getDataFolder().exists()) {
+      getConfig().options().copyDefaults(true);
     }
+    saveConfig();
 
-    @Override
-    public void onDisable(){
-        consoleLog(pfName+"이 비활성화 되었습니다");
-        super.onDisable();
-    }
+    //Event Register
+    registerEvent();
 
-    public void consoleLog(String msg){
-        getLogger().info(msg);
-    }
+    //command
+    Commands cmd = new Commands(this,"cmd");
+    getCommand("cmd").setExecutor(cmd);
+    getCommand("cmd").setTabCompleter(cmd);
 
-    public void registerEvent() {
-        Bukkit.getPluginManager().registerEvents(new PlayerEvent(),this);
-    }
+    consoleLog(pfName+"이 활성화 되었습니다");
+    super.onEnable();
+  }
+
+  @Override
+  public void onDisable(){
+    consoleLog(pfName+"이 비활성화 되었습니다");
+    super.onDisable();
+  }
+
+  public void consoleLog(String msg){
+    getLogger().info(msg);
+  }
+
+  public void registerEvent() {
+    Bukkit.getPluginManager().registerEvents(new PlayerEvent(),this);
+  }
 }

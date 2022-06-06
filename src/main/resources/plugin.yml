@@ -1,4 +1,4 @@
-main: com.goldfrosch.MainPlugin
+main: com.goldfrosch.RussianRoulette
 name: RussianRoulette
 version: 0.0.1-SNAPSHOT
 author: GoldFrosch

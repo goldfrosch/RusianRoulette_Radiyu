@@ -1,13 +1,13 @@
 package com.goldfrosch.commands;
 
-import com.goldfrosch.MainPlugin;
+import com.goldfrosch.RussianRoulette;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
 public class Commands extends AbstractCommand {
-    public Commands(MainPlugin plugin, String Command) {
+    public Commands(RussianRoulette plugin, String Command) {
         super(plugin,Command);
     }
 

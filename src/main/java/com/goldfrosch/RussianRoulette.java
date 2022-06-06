@@ -11,8 +11,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 @Getter
 @Setter
-public class MainPlugin extends JavaPlugin {
-    public static MainPlugin plugin;
+public class RussianRoulette extends JavaPlugin {
+    public static RussianRoulette plugin;
     private PluginDescriptionFile pdfFile = this.getDescription();
     private String pfName = pdfFile.getName() + " v" + pdfFile.getVersion();
 

@@ -1,16 +1,16 @@
 package com.goldfrosch.commands;
 
-import com.goldfrosch.MainPlugin;
+import com.goldfrosch.RussianRoulette;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 
 import java.util.List;
 
 public abstract class AbstractCommand implements TabExecutor {
-    protected MainPlugin plugin;
+    protected RussianRoulette plugin;
     private String Command;
 
-    public AbstractCommand(MainPlugin plugin, String Command) {
+    public AbstractCommand(RussianRoulette plugin, String Command) {
         this.plugin = plugin;
         this.Command = Command;
     }

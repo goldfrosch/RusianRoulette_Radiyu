@@ -1,9 +1,6 @@
 package com.goldfrosch.events;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Effect;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,6 +33,8 @@ public class PlayerEvent implements Listener {
             e.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.IRON_HOE)
     ) {
       Player player = (Player) e.getRightClicked();
+      Location loc = new Location(player.getWorld(), 4, 124, -272);
+      player.getWorld().getBlockAt(loc).setType(Material.AIR);
       if (selectedPlayer == null) {
         selectedPlayer = player.getUniqueId();
         selectPlayerMessage();
@@ -61,23 +60,29 @@ public class PlayerEvent implements Listener {
         Optional<Player> player = Optional.ofNullable(Bukkit.getPlayer(selectedPlayer));
         player.ifPresent(value -> {
           value.setGlowing(false);
+          e.getPlayer().getInventory().getItemInMainHand().setType(Material.AIR);
           var random = Math.random();
           if (random > (1.0 / (double) bullet)) {
             bullet--;
             for(Player user: Bukkit.getOnlinePlayers()) {
-              user.sendMessage(random + " / " + (1.0 / (double) bullet));
+              user.playSound(user.getLocation(), Sound.ITEM_CROSSBOW_LOADING_END, 2, 2);
+              user.sendMessage("불발되었습니다");
               user.sendMessage("현재 남은 탄알: " + 1 + "/" + bullet);
             }
           } else {
             value.setHealth(0);
             value.getWorld().playEffect(value.getLocation(), Effect.FIREWORK_SHOOT,5, 5);
-            value.getWorld().playSound(value.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 4, 4);for(Player user: Bukkit.getOnlinePlayers()) {
-              user.sendMessage("탄알이 사용되었습니다");
+            value.getWorld().playSound(value.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 4, 4);
+            for(Player user: Bukkit.getOnlinePlayers()) {
+              user.sendTitle(ChatColor.BLUE + "다음 컨텐츠 만들사람", ChatColor.AQUA + value.getName(), 20,10,10);
             }
-            selectedPlayer = null;
+
             bullet = 6;
           }
+          Location loc = new Location(value.getWorld(), 4, 124, -272);
+          value.getWorld().getBlockAt(loc).setType(Material.REDSTONE_BLOCK);
         });
+        selectedPlayer = null;
       }
     }
 

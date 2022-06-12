@@ -3,5 +3,6 @@ name: RussianRoulette
 version: 0.0.1-SNAPSHOT
 author: GoldFrosch
 commands:
-  cmd:
-    description: HO!
+  game:
+    give:
+      description: HO!

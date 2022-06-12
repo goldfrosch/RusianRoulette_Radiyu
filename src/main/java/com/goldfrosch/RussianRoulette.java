@@ -28,9 +28,9 @@ public class RussianRoulette extends JavaPlugin {
     registerEvent();
 
     //command
-    Commands cmd = new Commands(this,"cmd");
-    getCommand("cmd").setExecutor(cmd);
-    getCommand("cmd").setTabCompleter(cmd);
+    Commands cmd = new Commands(this,"game");
+    getCommand("game").setExecutor(cmd);
+    getCommand("game").setTabCompleter(cmd);
 
     consoleLog(pfName+"이 활성화 되었습니다");
     super.onEnable();
